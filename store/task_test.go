@@ -9,6 +9,7 @@ import (
 	"github.com/mongolmongol2022/go_todo_app_HandsOnTraining/entity"
 	"github.com/mongolmongol2022/go_todo_app_HandsOnTraining/testutil"
 	"github.com/google/go-cmp/cmp"
+	_ "github.com/go-sql-driver/mysql"
 	"github.com/jmoiron/sqlx"
 )
 
