@@ -7,9 +7,8 @@ import (
 	"github.com/DATA-DOG/go-sqlmock"
 	"github.com/mongolmongol2022/go_todo_app_HandsOnTraining/clock"
 	"github.com/mongolmongol2022/go_todo_app_HandsOnTraining/entity"
-	"github.com/mongolmongol2022/go_todo_app_HandsOnTraining/testutil"
-	"github.com/google/go-cmp/cmp"
-	_ "github.com/go-sql-driver/mysql"
+	// "github.com/mongolmongol2022/go_todo_app_HandsOnTraining/testutil"
+	// "github.com/google/go-cmp/cmp"
 	"github.com/jmoiron/sqlx"
 )
 
@@ -57,27 +56,27 @@ func prepareTasks(ctx context.Context, t *testing.T, con Execer) entity.Tasks {
 	return wants
 }
 
-func TestRepository_ListTasks(t *testing.T) {
-	ctx := context.Background()
-	// entity.Taskを作成する他のテストケースと混ざるとテストがフェイルする。
-	// そのため、トランザクションをはることでこのテストケースの中だけのテーブル状態にする。
-	tx, err := testutil.OpenDBForTest(t).BeginTxx(ctx, nil)
-	// このテストケースが完了したら元に戻す
-	t.Cleanup(func() { _ = tx.Rollback() })
-	if err != nil {
-		t.Fatal(err)
-	}
-	wants := prepareTasks(ctx, t, tx)
+// func TestRepository_ListTasks(t *testing.T) {
+// 	ctx := context.Background()
+// 	// entity.Taskを作成する他のテストケースと混ざるとテストがフェイルする。
+// 	// そのため、トランザクションをはることでこのテストケースの中だけのテーブル状態にする。
+// 	tx, err := testutil.OpenDBForTest(t).BeginTxx(ctx, nil)
+// 	// このテストケースが完了したら元に戻す
+// 	t.Cleanup(func() { _ = tx.Rollback() })
+// 	if err != nil {
+// 		t.Fatal(err)
+// 	}
+// 	wants := prepareTasks(ctx, t, tx)
 
-	sut := &Repository{}
-	gots, err := sut.ListTasks(ctx, tx)
-	if err != nil {
-		t.Fatalf("unexpected error: %v", err)
-	}
-	if d := cmp.Diff(gots, wants); len(d) != 0 {
-		t.Errorf("differs: (-got +want)\n%s", d)
-	}
-}
+// 	sut := &Repository{}
+// 	gots, err := sut.ListTasks(ctx, tx)
+// 	if err != nil {
+// 		t.Fatalf("unexpected error: %v", err)
+// 	}
+// 	if d := cmp.Diff(gots, wants); len(d) != 0 {
+// 		t.Errorf("differs: (-got +want)\n%s", d)
+// 	}
+// }
 
 // "github.com/DATA-DOG/go-sqlmock" を用いた、RDBMSを用いないテスト
 func TestRepository_AddTask(t *testing.T) {
