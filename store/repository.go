@@ -7,10 +7,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/mongolmongol2022/go_todo_app_HandsOnTraining/clock"
-	"github.com/mongolmongol2022/go_todo_app_HandsOnTraining/config"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jmoiron/sqlx"
+	"github.com/mongolmongol2022/go_todo_app_HandsOnTraining/clock"
+	"github.com/mongolmongol2022/go_todo_app_HandsOnTraining/config"
 )
 
 const (

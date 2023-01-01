@@ -5,8 +5,8 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/mongolmongol2022/go_todo_app_HandsOnTraining/entity"
 	"github.com/go-sql-driver/mysql"
+	"github.com/mongolmongol2022/go_todo_app_HandsOnTraining/entity"
 )
 
 func (r *Repository) RegisterUser(ctx context.Context, db Execer, u *entity.User) error {
@@ -29,4 +29,16 @@ name, password, role, created, modified
 	}
 	u.ID = entity.UserID(id)
 	return nil
+}
+func (r *Repository) GetUser(
+	ctx context.Context, db Queryer, name string,
+) (*entity.User, error) {
+	u := &entity.User{}
+	sql := `SELECT
+		id, name, password, role, created, modified 
+		FROM user WHERE name = ?`
+	if err := db.GetContext(ctx, u, sql, name); err != nil {
+		return nil, err
+	}
+	return u, nil
 }
