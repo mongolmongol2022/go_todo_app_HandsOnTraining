@@ -32,6 +32,7 @@ func TestEmbed(t *testing.T) {
 	}
 }
 
+
 // デバッグコード
 func TestJWTer(t *testing.T) {
 	store := &store.KVS{Cli: testutil.OpenRedisForTest(t)}
