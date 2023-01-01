@@ -19,3 +19,4 @@ _tools/mysql/data/
 .env
 
 auth/cert
+auth/jwt_test.go
