@@ -18,4 +18,4 @@ tmp/
 _tools/mysql/data/
 .env
 
-auth/cert
+auth/cert/secret.pem
