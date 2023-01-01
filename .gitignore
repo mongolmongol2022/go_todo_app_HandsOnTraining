@@ -17,3 +17,5 @@
 tmp/
 _tools/mysql/data/
 .env
+
+auth/cert
